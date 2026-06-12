@@ -7,7 +7,7 @@ python -m venv test_env
 source test_env/bin/activate
 
 python -m pip install dist/*.tar.gz
-python -m pip install requirements/test_requirements.txt
+python -m pip install -r requirements/test_requirements.txt
 
 # Run the tests on the installed source distribution
 mkdir tmp_for_test
