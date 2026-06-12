@@ -29,7 +29,7 @@ concurrency:
 jobs:
   build_wheels:
     name: Build wheel for cp${{ matrix.python }}-${{ matrix.platform_id }}-${{ matrix.manylinux_image }}
-    if: github.repository == 'scikit-learn/scikit-learn-release'
+    # if: github.repository == 'scikit-learn/scikit-learn-release'
     runs-on: ${{ matrix.os }}
     defaults:
       run:
