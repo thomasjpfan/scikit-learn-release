@@ -5,7 +5,7 @@ set -x
 
 PROJECT_DIR="$1"
 
-python $PROJECT_DIR/build_tools/wheels/check_license.py
+python $PROJECT_DIR/tools/check_license.py
 
 python -c "import joblib; print(f'Number of cores (physical): \
 {joblib.cpu_count()} ({joblib.cpu_count(only_physical_cores=True)})')"

@@ -39,23 +39,35 @@ jobs:
       fail-fast: false
       matrix:
         include:
-
           # Linux
-          - os: ubuntu-latest
-            python: 311
-            platform_id: manylinux_x86_64
-          - os: ubuntu-latest
-            python: 312
-            platform_id: manylinux_x86_64
-          - os: ubuntu-latest
-            python: 313
-            platform_id: manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python: 311
+          #   platform_id: manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python: 312
+          #   platform_id: manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python: 313
+          #   platform_id: manylinux_x86_64
           - os: ubuntu-latest
             python: 314
             platform_id: manylinux_x86_64
           - os: ubuntu-latest
             python: 314t
             platform_id: manylinux_x86_64
+
+          # Linux arm
+          # - os: ubuntu-24.04-arm
+          #   python: 311
+          # - os: ubuntu-24.04-arm
+          #   python: 312
+          # - os: ubuntu-24.04-arm
+          #   python: 313
+          # - os: ubuntu-24.04-arm
+          #   python: 314
+          # - os: ubuntu-24.04-arm
+          #   python: 314t
+
 
     steps:
       - name: Checkout scikit-learn-release
@@ -66,7 +78,7 @@ jobs:
       - name: Checkout scikit-learn
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
-          repository: scikit-learn/scikit-learn
+          repository: thomasjpfan/scikit-learn
           ref: ${{ env.SOURCE_REF_TO_BUILD }}
           path: scikit-learn-src
           persist-credentials: false
@@ -75,9 +87,9 @@ jobs:
         uses: pypa/cibuildwheel@f03ac7617d6cff873ccf24cc0d567ef5ba5a9e6d # v4.0.0
         env:
           CIBW_BUILD: cp${{ matrix.python }}-${{ matrix.platform_id }}
-          # CIBW_BEFORE_TEST_WINDOWS: bash build_tools/github/build_minimal_windows_image.sh ${{ matrix.python }} ${{matrix.platform_id}}
-          # CIBW_TEST_REQUIRES: ${{ contains(matrix.python, '314') && 'pytest' || 'pytest pandas' }} scipy
-          # CIBW_TEST_COMMAND_WINDOWS: bash {project}/build_tools/github/test_windows_wheels.sh ${{ matrix.python }} {project} ${{matrix.platform_id}}
+          CIBW_TEST_REQUIRES: ${{ contains(matrix.python, '314') && 'pytest' || 'pytest pandas' }} scipy
+          CIBW_BEFORE_TEST_WINDOWS: bash tools/build_minimal_windows_image.sh ${{ matrix.python }} ${{matrix.platform_id}}
+          CIBW_TEST_COMMAND_WINDOWS: bash {project}/tools/test_windows_wheels.sh ${{ matrix.python }} {project} ${{matrix.platform_id}}
           SRC: ${{ github.workspace }}/scikit-learn-src
         with:
            package-dir: scikit-learn-src
