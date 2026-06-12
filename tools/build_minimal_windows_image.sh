@@ -34,7 +34,7 @@ if [[ $FREE_THREADED_BUILD == "False" && "$PLATFORM_ID" != "win_arm64" ]]; then
     }
 
     exec_inside_container "python -m pip install $MNT_FOLDER/$WHEEL_NAME"
-    exec_inside_container "python -m pip install -r $MNT_FOLDER/requirements/wheel_test_requirements.txt"
+    exec_inside_container "python -m pip install -r $MNT_FOLDER/requirements/test_requirements.txt"
 
     # Save container state to scikit-learn/minimal-windows image. On Windows the
     # container needs to be stopped first.
@@ -44,5 +44,5 @@ else
     # This is too cumbersome to use a Docker image in the free-threaded case
     # TODO When pandas has a release with a Windows free-threaded wheel we can
     # replace the next line with
-    python -m pip install -r requirements/wheel_test_requirements.txt
+    python -m pip install -r requirements/test_requirements.txt
 fi

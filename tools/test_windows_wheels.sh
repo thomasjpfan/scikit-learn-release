@@ -18,7 +18,7 @@ if [[ $FREE_THREADED_BUILD == "False" ]]; then
     if [[ "$PLATFORM_ID" == "win_arm64" ]]; then
         echo "Running tests locally on Windows on ARM64 (WoA) as no Docker support on WoA GHA runner"
         python -c "import sklearn; sklearn.show_versions()"
-        pytest --pyargs sklearn --collect-only
+        pytest --pyargs sklearn.tests.test_dummy
     else
         echo "Running tests in Docker on Windows x86_64"
         docker container run \
@@ -28,11 +28,11 @@ if [[ $FREE_THREADED_BUILD == "False" ]]; then
         docker container run \
             -e SKLEARN_SKIP_NETWORK_TESTS=1 \
             --rm scikit-learn/minimal-windows \
-            powershell -Command "pytest --pyargs sklearn --collect-only"
+            powershell -Command "pytest --pyargs sklearn.tests.test_dummy"
     fi
 else
     # This is too cumbersome to use a Docker image in the free-threaded case
     export PYTHON_GIL=0
     python -c "import sklearn; sklearn.show_versions()"
-    pytest --pyargs sklearn --collect-only
+    pytest --pyargs sklearn.tests.test_dummy
 fi

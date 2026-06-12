@@ -6,7 +6,7 @@ manylinux-x86_64-image = "manylinux_2_28"
 manylinux-i686-image = "manylinux_2_28"
 environment = { SKLEARN_SKIP_NETWORK_TESTS = "1" }
 before-build = "bash {project}/tools/cibw_before_build.sh {project}"
-before-test = "pip install -r {project}/requirements/wheel_test_requirements.txt"
+before-test = "pip install -r {project}/requirements/test_requirements.txt"
 test-command = "bash {project}/tools/test_wheels.sh {project}"
 
 [tool.cibuildwheel.windows]
