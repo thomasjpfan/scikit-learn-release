@@ -124,7 +124,7 @@ jobs:
           CIBW_TEST_COMMAND_WINDOWS: bash {project}/tools/test_windows_wheels.sh ${{ matrix.python }} {project} ${{matrix.platform_id}}
           SOURCE_DATE_EPOCH: ${{ env.SOURCE_DATE_EPOCH }}
           PYTHONHASHSEED: "0"
-          CIBW_ENVIRONMENT_PASS_LINUX: SOURCE_DATE_EPOCH PYTHONHASHSEED
+          CIBW_ENVIRONMENT_PASS_LINUX: SOURCE_DATE_EPOCH PYTHONHASHSEED RUNNER_OS
         with:
            package-dir: scikit-learn-src
            output-dir: dist

@@ -8,9 +8,6 @@ environment = { SKLEARN_SKIP_NETWORK_TESTS = "1" }
 before-build = "bash {project}/tools/cibw_before_build.sh {project}"
 test-command = "bash {project}/tools/test_wheels.sh {project}"
 
-[tool.cibuildwheel.linux]
-environment-pass = ["RUNNER_OS"]
-
 [tool.cibuildwheel.windows]
 # Needed on Windows CI to compile with Visual Studio compiler
 # otherwise Meson detects a MINGW64 platform and use MINGW64
