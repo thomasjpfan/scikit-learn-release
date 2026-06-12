@@ -40,15 +40,15 @@ jobs:
       matrix:
         include:
           # Linux
-          # - os: ubuntu-latest
-          #   python: 311
-          #   platform_id: manylinux_x86_64
-          # - os: ubuntu-latest
-          #   python: 312
-          #   platform_id: manylinux_x86_64
-          # - os: ubuntu-latest
-          #   python: 313
-          #   platform_id: manylinux_x86_64
+          - os: ubuntu-latest
+            python: 311
+            platform_id: manylinux_x86_64
+          - os: ubuntu-latest
+            python: 312
+            platform_id: manylinux_x86_64
+          - os: ubuntu-latest
+            python: 313
+            platform_id: manylinux_x86_64
           - os: ubuntu-latest
             python: 314
             platform_id: manylinux_x86_64
@@ -57,16 +57,16 @@ jobs:
             platform_id: manylinux_x86_64
 
           # Linux arm
-          # - os: ubuntu-24.04-arm
-          #   python: 311
-          # - os: ubuntu-24.04-arm
-          #   python: 312
-          # - os: ubuntu-24.04-arm
-          #   python: 313
-          # - os: ubuntu-24.04-arm
-          #   python: 314
-          # - os: ubuntu-24.04-arm
-          #   python: 314t
+          - os: ubuntu-24.04-arm
+            python: 311
+          - os: ubuntu-24.04-arm
+            python: 312
+          - os: ubuntu-24.04-arm
+            python: 313
+          - os: ubuntu-24.04-arm
+            python: 314
+          - os: ubuntu-24.04-arm
+            python: 314t
 
 
     steps:
