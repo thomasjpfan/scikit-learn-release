@@ -1,7 +1,7 @@
 name: Publish sdist and wheels
 
 env:
-  SOURCE_REF_TO_BUILD: main
+  SOURCE_REF_TO_BUILD: thomasjpfan/wheelmove
 
 on:
   schedule:
@@ -55,7 +55,7 @@ jobs:
       - name: Checkout scikit-learn-release
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
-          repository: scikit-learn/scikit-learn
+          repository: thomasjpfan/scikit-learn
           ref: ${{ env.SOURCE_REF_TO_BUILD }}
           path: scikit-learn-src
           persist-credentials: false
@@ -63,28 +63,10 @@ jobs:
       - name: Build and test wheels
         uses: pypa/cibuildwheel@f03ac7617d6cff873ccf24cc0d567ef5ba5a9e6d # v4.0.0
         env:
-          CIBW_ENVIRONMENT: SKLEARN_SKIP_NETWORK_TESTS=1
           CIBW_BUILD: cp${{ matrix.python }}-${{ matrix.platform_id }}
-          CIBW_ARCHS: all
-          CIBW_MANYLINUX_X86_64_IMAGE: ${{ matrix.manylinux_image }}
-          CIBW_MANYLINUX_I686_IMAGE: ${{ matrix.manylinux_image }}
-          # Needed on Windows CI to compile with Visual Studio compiler
-          # otherwise Meson detects a MINGW64 platform and use MINGW64
-          # toolchain
-          # CIBW_CONFIG_SETTINGS_WINDOWS: "setup-args=--vsenv"
-          # CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: bash build_tools/github/repair_windows_wheels.sh {wheel} {dest_dir}
-          # CIBW_BEFORE_BUILD: bash {project}/build_tools/wheels/cibw_before_build.sh {project}
           # CIBW_BEFORE_TEST_WINDOWS: bash build_tools/github/build_minimal_windows_image.sh ${{ matrix.python }} ${{matrix.platform_id}}
-          CIBW_ENVIRONMENT_PASS_LINUX: RUNNER_OS
-          # TODO Put back pandas when there is a pandas release with Python 3.14 wheels
           # CIBW_TEST_REQUIRES: ${{ contains(matrix.python, '314') && 'pytest' || 'pytest pandas' }} scipy
-          # On Windows, we use a custom Docker image and CIBW_TEST_REQUIRES_WINDOWS
-          # does not make sense because it would install dependencies in the host
-          # rather than inside the Docker image
-          CIBW_TEST_REQUIRES_WINDOWS: ""
-          # CIBW_TEST_COMMAND: bash {project}/build_tools/wheels/test_wheels.sh {project}
           # CIBW_TEST_COMMAND_WINDOWS: bash {project}/build_tools/github/test_windows_wheels.sh ${{ matrix.python }} {project} ${{matrix.platform_id}}
-          CIBW_BUILD_VERBOSITY: 1
           SRC: ${{ github.workspace }}/scikit-learn-src
         with:
            package-dir: scikit-learn-src
@@ -95,7 +77,7 @@ jobs:
         #   python -m cibuildwheel --output-dir wheelhouse
 
       - name: Store artifacts
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a v7.0.1
         with:
           name: cibw-wheels-cp${{ matrix.python }}-${{ matrix.platform_id }}
           path: ./dist/*.whl
