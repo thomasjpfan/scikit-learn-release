@@ -14,6 +14,7 @@ on:
   push:
     branches:
       - main
+      - testing
   workflow_dispatch:
     inputs:
       environment:
@@ -29,7 +30,7 @@ concurrency:
 jobs:
   build_wheels:
     name: Build wheel for cp${{ matrix.python }}-${{ matrix.platform_id }}
-    if: github.repository == 'scikit-learn/scikit-learn-release'
+    # if: github.repository == 'scikit-learn/scikit-learn-release'
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -39,40 +40,59 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Linux
-          - os: ubuntu-latest
+          # Window 64 bit
+          - os: windows-latest
             python: 311
-            platform_id: manylinux_x86_64
-          - os: ubuntu-latest
-            python: 312
-            platform_id: manylinux_x86_64
-          - os: ubuntu-latest
-            python: 313
-            platform_id: manylinux_x86_64
-          - os: ubuntu-latest
-            python: 314
-            platform_id: manylinux_x86_64
+            platform_id: win_amd64
+
+          # Windows on ARM64 (WoA)
+          - os: windows-11-arm
+            python: 314t
+            platform_id: win_arm64
+
+          # Linux
+          # - os: ubuntu-latest
+          #   python: 311
+          #   platform_id: manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python: 312
+          #   platform_id: manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python: 313
+          #   platform_id: manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python: 314
+          #   platform_id: manylinux_x86_64
           - os: ubuntu-latest
             python: 314t
             platform_id: manylinux_x86_64
 
           # Linux arm
-          - os: ubuntu-24.04-arm
-            python: 311
-            platform_id: manylinux_aarch64
-          - os: ubuntu-24.04-arm
-            python: 312
-            platform_id: manylinux_aarch64
-          - os: ubuntu-24.04-arm
-            python: 313
-            platform_id: manylinux_aarch64
-          - os: ubuntu-24.04-arm
-            python: 314
-            platform_id: manylinux_aarch64
+          # - os: ubuntu-24.04-arm
+          #   python: 311
+          #   platform_id: manylinux_aarch64
+          # - os: ubuntu-24.04-arm
+          #   python: 312
+          #   platform_id: manylinux_aarch64
+          # - os: ubuntu-24.04-arm
+          #   python: 313
+          #   platform_id: manylinux_aarch64
+          # - os: ubuntu-24.04-arm
+          #   python: 314
+          #   platform_id: manylinux_aarch64
           - os: ubuntu-24.04-arm
             python: 314t
             platform_id: manylinux_aarch64
 
+          # MacOS x86_64
+          - os: macos-15-intel
+            python: 311
+            platform_id: macosx_x86_64
+
+          # MacOS arm64
+          - os: macos-14
+            python: 311
+            platform_id: macosx_arm64
 
     steps:
       - name: Checkout scikit-learn-release
