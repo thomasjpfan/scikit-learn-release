@@ -2,8 +2,9 @@
 
 set -euxo pipefail
 
-PROJECT_DIR="$1"
-LICENSE_FILE="$PROJECT_DIR/COPYING"
+PROJECT_DIR="${1:-$PWD}"
+NUMPY_SRC_DIR="${1:-$PWD}/scikit-learn-src"
+LICENSE_FILE="$NUMPY_SRC_DIR/COPYING"
 
 echo "" >>"$LICENSE_FILE"
 echo "----" >>"$LICENSE_FILE"
