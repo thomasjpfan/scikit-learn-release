@@ -156,10 +156,10 @@ jobs:
           path: scikit-learn-src
           persist-credentials: false
 
-      - uses: conda-incubator/setup-miniconda@8ee1f361103df19b6f8c8655fd3967a8ecb162d5  # v4
+      - uses: mamba-org/setup-micromamba@d7c9bd84e824b79d2af72a2d4196c7f4300d3476 # v3.0.0
         if: ${{ startsWith(matrix.platform_id, 'macosx') }}
         with:
-          miniforge-version: 26.3.2-3
+          micromamba-version: '2.8.1-0'
 
       - name: Set-up macOS
         if: ${{ startsWith(matrix.platform_id, 'macosx') }}
