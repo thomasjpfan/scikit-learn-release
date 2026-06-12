@@ -41,106 +41,106 @@ jobs:
       matrix:
         include:
           # Window 64 bit
-          - os: windows-latest
-            python: 311
-            platform_id: win_amd64
-          - os: windows-latest
-            python: 312
-            platform_id: win_amd64
-          - os: windows-latest
-            python: 313
-            platform_id: win_amd64
-          - os: windows-latest
-            python: 314
-            platform_id: win_amd64
-          - os: windows-latest
-            python: 314t
-            platform_id: win_amd64
+          # - os: windows-latest
+          #   python: 311
+          #   platform_id: win_amd64
+          # - os: windows-latest
+          #   python: 312
+          #   platform_id: win_amd64
+          # - os: windows-latest
+          #   python: 313
+          #   platform_id: win_amd64
+          # - os: windows-latest
+          #   python: 314
+          #   platform_id: win_amd64
+          # - os: windows-latest
+          #   python: 314t
+          #   platform_id: win_amd64
 
-          # Windows on ARM64 (WoA)
-          - os: windows-11-arm
-            python: 311
-            platform_id: win_arm64
-          - os: windows-11-arm
-            python: 312
-            platform_id: win_arm64
-          - os: windows-11-arm
-            python: 313
-            platform_id: win_arm64
-          - os: windows-11-arm
-            python: 314
-            platform_id: win_arm64
-          - os: windows-11-arm
-            python: 314t
-            platform_id: win_arm64
+          # # Windows on ARM64 (WoA)
+          # - os: windows-11-arm
+          #   python: 311
+          #   platform_id: win_arm64
+          # - os: windows-11-arm
+          #   python: 312
+          #   platform_id: win_arm64
+          # - os: windows-11-arm
+          #   python: 313
+          #   platform_id: win_arm64
+          # - os: windows-11-arm
+          #   python: 314
+          #   platform_id: win_arm64
+          # - os: windows-11-arm
+          #   python: 314t
+          #   platform_id: win_arm64
 
-          # Linux
-          - os: ubuntu-latest
-            python: 311
-            platform_id: manylinux_x86_64
-          - os: ubuntu-latest
-            python: 312
-            platform_id: manylinux_x86_64
-          - os: ubuntu-latest
-            python: 313
-            platform_id: manylinux_x86_64
-          - os: ubuntu-latest
-            python: 314
-            platform_id: manylinux_x86_64
-          - os: ubuntu-latest
-            python: 314t
-            platform_id: manylinux_x86_64
+          # # Linux
+          # - os: ubuntu-latest
+          #   python: 311
+          #   platform_id: manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python: 312
+          #   platform_id: manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python: 313
+          #   platform_id: manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python: 314
+          #   platform_id: manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python: 314t
+          #   platform_id: manylinux_x86_64
 
-          # Linux arm
-          - os: ubuntu-24.04-arm
-            python: 311
-            platform_id: manylinux_aarch64
-          - os: ubuntu-24.04-arm
-            python: 312
-            platform_id: manylinux_aarch64
-          - os: ubuntu-24.04-arm
-            python: 313
-            platform_id: manylinux_aarch64
-          - os: ubuntu-24.04-arm
-            python: 314
-            platform_id: manylinux_aarch64
-          - os: ubuntu-24.04-arm
-            python: 314t
-            platform_id: manylinux_aarch64
+          # # Linux arm
+          # - os: ubuntu-24.04-arm
+          #   python: 311
+          #   platform_id: manylinux_aarch64
+          # - os: ubuntu-24.04-arm
+          #   python: 312
+          #   platform_id: manylinux_aarch64
+          # - os: ubuntu-24.04-arm
+          #   python: 313
+          #   platform_id: manylinux_aarch64
+          # - os: ubuntu-24.04-arm
+          #   python: 314
+          #   platform_id: manylinux_aarch64
+          # - os: ubuntu-24.04-arm
+          #   python: 314t
+          #   platform_id: manylinux_aarch64
 
-          # MacOS x86_64
+          # # MacOS x86_64
           - os: macos-15-intel
             python: 311
             platform_id: macosx_x86_64
-          - os: macos-15-intel
-            python: 312
-            platform_id: macosx_x86_64
-          - os: macos-15-intel
-            python: 313
-            platform_id: macosx_x86_64
-          - os: macos-15-intel
-            python: 314
-            platform_id: macosx_x86_64
-          - os: macos-15-intel
-            python: 314t
-            platform_id: macosx_x86_64
+          # - os: macos-15-intel
+          #   python: 312
+          #   platform_id: macosx_x86_64
+          # - os: macos-15-intel
+          #   python: 313
+          #   platform_id: macosx_x86_64
+          # - os: macos-15-intel
+          #   python: 314
+          #   platform_id: macosx_x86_64
+          # - os: macos-15-intel
+          #   python: 314t
+          #   platform_id: macosx_x86_64
 
           # MacOS arm64
           - os: macos-14
             python: 311
             platform_id: macosx_arm64
-          - os: macos-14
-            python: 312
-            platform_id: macosx_arm64
-          - os: macos-14
-            python: 313
-            platform_id: macosx_arm64
-          - os: macos-14
-            python: 314
-            platform_id: macosx_arm64
-          - os: macos-14
-            python: 314t
-            platform_id: macosx_arm64
+          # - os: macos-14
+          #   python: 312
+          #   platform_id: macosx_arm64
+          # - os: macos-14
+          #   python: 313
+          #   platform_id: macosx_arm64
+          # - os: macos-14
+          #   python: 314
+          #   platform_id: macosx_arm64
+          # - os: macos-14
+          #   python: 314t
+          #   platform_id: macosx_arm64
 
     steps:
       - name: Checkout scikit-learn-release
@@ -156,10 +156,10 @@ jobs:
           path: scikit-learn-src
           persist-credentials: false
 
-      - uses: conda-incubator/setup-miniconda@8ee1f361103df19b6f8c8655fd3967a8ecb162d5  # v4
+      - uses: mamba-org/setup-micromamba@d7c9bd84e824b79d2af72a2d4196c7f4300d3476 # v3.0.0
         if: ${{ startsWith(matrix.platform_id, 'macosx') }}
         with:
-          miniforge-version: 26.3.2-3
+          micromamba-version: '2.8.1-0'
 
       - name: Set-up macOS
         if: ${{ startsWith(matrix.platform_id, 'macosx') }}
@@ -237,3 +237,9 @@ jobs:
 
       - name: View artifacts
         run: ls dist
+
+# TODO:
+# nightly upload
+# upload to pypi
+# Ensure commit is tagged before sending to PyPI
+
