@@ -28,7 +28,7 @@ concurrency:
 
 jobs:
   build_wheels:
-    name: Build wheel for cp${{ matrix.python }}-${{ matrix.platform_id }}-${{ matrix.manylinux_image }}
+    name: Build wheel for cp${{ matrix.python }}-${{ matrix.platform_id }}
     # if: github.repository == 'scikit-learn/scikit-learn-release'
     runs-on: ${{ matrix.os }}
     defaults:
@@ -40,11 +40,22 @@ jobs:
       matrix:
         include:
 
-        # Linux
+          # Linux
+          - os: ubuntu-latest
+            python: 311
+            platform_id: manylinux_x86_64
+          - os: ubuntu-latest
+            python: 312
+            platform_id: manylinux_x86_64
+          - os: ubuntu-latest
+            python: 313
+            platform_id: manylinux_x86_64
+          - os: ubuntu-latest
+            python: 314
+            platform_id: manylinux_x86_64
           - os: ubuntu-latest
             python: 314t
             platform_id: manylinux_x86_64
-            manylinux_image: manylinux_2_28
 
     steps:
       - name: Checkout scikit-learn-release
