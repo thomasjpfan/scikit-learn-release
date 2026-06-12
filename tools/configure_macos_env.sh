@@ -13,8 +13,8 @@ else
     OPENMP_URL="https://anaconda.org/conda-forge/llvm-openmp/11.1.0/download/osx-64/llvm-openmp-11.1.0-hda6cdc1_1.tar.bz2"
 fi
 
-PREFIX="${MAMBA_ROOT_PREFIX:-$HOME/micromamba}/envs/build"
-micromamba create -y -p "$PREFIX" $OPENMP_URL
+conda create -n build $OPENMP_URL
+PREFIX="$HOME/miniconda3/envs/build"
 
 echo "CPPFLAGS=$CPPFLAGS -Xpreprocessor -fopenmp" >> "$GITHUB_ENV"
 echo "CFLAGS=$CFLAGS -I$PREFIX/include" >> "$GITHUB_ENV"
