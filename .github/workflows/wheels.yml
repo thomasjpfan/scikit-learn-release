@@ -47,7 +47,7 @@ jobs:
 
           # Windows on ARM64 (WoA)
           - os: windows-11-arm
-            python: 314t
+            python: 314
             platform_id: win_arm64
 
           # Linux
@@ -60,11 +60,8 @@ jobs:
           # - os: ubuntu-latest
           #   python: 313
           #   platform_id: manylinux_x86_64
-          # - os: ubuntu-latest
-          #   python: 314
-          #   platform_id: manylinux_x86_64
           - os: ubuntu-latest
-            python: 314t
+            python: 314
             platform_id: manylinux_x86_64
 
           # Linux arm
@@ -77,11 +74,8 @@ jobs:
           # - os: ubuntu-24.04-arm
           #   python: 313
           #   platform_id: manylinux_aarch64
-          # - os: ubuntu-24.04-arm
-          #   python: 314
-          #   platform_id: manylinux_aarch64
           - os: ubuntu-24.04-arm
-            python: 314t
+            python: 314
             platform_id: manylinux_aarch64
 
           # MacOS x86_64
@@ -108,6 +102,19 @@ jobs:
           path: scikit-learn-src
           persist-credentials: false
 
+      - uses: conda-incubator/setup-miniconda@8ee1f361103df19b6f8c8655fd3967a8ecb162d5  # v4
+        if: ${{ startsWith(matrix.platform_id, 'macosx') }}
+        with:
+          miniforge-version: 26.3.2-3
+
+      - name: Set-up macOS
+        if: ${{ startsWith(matrix.platform_id, 'macosx') }}
+        run: bash tools/configure_macos_env.sh
+
+      - name: Set SOURCE_DATE_EPOCH from source commit
+        run: |
+          echo "SOURCE_DATE_EPOCH=$(git -C scikit-learn-src log -1 --pretty=%ct)" >> "$GITHUB_ENV"
+
       - name: Build and test wheels
         uses: pypa/cibuildwheel@f03ac7617d6cff873ccf24cc0d567ef5ba5a9e6d # v4.0.0
         env:
@@ -115,7 +122,9 @@ jobs:
           CIBW_TEST_REQUIRES: ${{ contains(matrix.python, '314') && 'pytest' || 'pytest pandas' }} scipy
           CIBW_BEFORE_TEST_WINDOWS: bash tools/build_minimal_windows_image.sh ${{ matrix.python }} ${{matrix.platform_id}}
           CIBW_TEST_COMMAND_WINDOWS: bash {project}/tools/test_windows_wheels.sh ${{ matrix.python }} {project} ${{matrix.platform_id}}
-          SRC: ${{ github.workspace }}/scikit-learn-src
+          SOURCE_DATE_EPOCH: ${{ env.SOURCE_DATE_EPOCH }}
+          PYTHONHASHSEED: "0"
+          CIBW_ENVIRONMENT_PASS_LINUX: SOURCE_DATE_EPOCH PYTHONHASHSEED
         with:
            package-dir: scikit-learn-src
            output-dir: dist

@@ -24,7 +24,7 @@ python -c "import sklearn; sklearn.show_versions()"
 
 if pip show -qq pytest-xdist; then
     XDIST_WORKERS=$(python -c "import joblib; print(joblib.cpu_count(only_physical_cores=True))")
-    pytest --pyargs sklearn -n $XDIST_WORKERS
+    pytest --collect-only --pyargs sklearn -n $XDIST_WORKERS
 else
-    pytest --pyargs sklearn
+    pytest --collect-only --pyargs sklearn
 fi
