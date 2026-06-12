@@ -119,9 +119,8 @@ jobs:
         uses: pypa/cibuildwheel@f03ac7617d6cff873ccf24cc0d567ef5ba5a9e6d # v4.0.0
         env:
           CIBW_BUILD: cp${{ matrix.python }}-${{ matrix.platform_id }}
-          CIBW_TEST_REQUIRES: ${{ contains(matrix.python, '314') && 'pytest' || 'pytest pandas' }} scipy
-          CIBW_BEFORE_TEST_WINDOWS: bash tools/build_minimal_windows_image.sh ${{ matrix.python }} ${{matrix.platform_id}}
-          CIBW_TEST_COMMAND_WINDOWS: bash {project}/tools/test_windows_wheels.sh ${{ matrix.python }} {project} ${{matrix.platform_id}}
+          CIBW_BEFORE_TEST_WINDOWS: bash tools/build_minimal_windows_image.sh ${{ matrix.python }} ${{ matrix.platform_id }}
+          CIBW_TEST_COMMAND_WINDOWS: bash {project}/tools/test_windows_wheels.sh ${{ matrix.python }} {project} ${{ matrix.platform_id }}
           SOURCE_DATE_EPOCH: ${{ env.SOURCE_DATE_EPOCH }}
           PYTHONHASHSEED: "0"
           CIBW_ENVIRONMENT_PASS_LINUX: SOURCE_DATE_EPOCH PYTHONHASHSEED RUNNER_OS

@@ -44,6 +44,5 @@ else
     # This is too cumbersome to use a Docker image in the free-threaded case
     # TODO When pandas has a release with a Windows free-threaded wheel we can
     # replace the next line with
-    # python -m pip install CIBW_TEST_REQUIRES
     python -m pip install -r requirements/wheel_test_requirements.txt
 fi
